@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Entity\BetaLixT.Templates.Web.Standard.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

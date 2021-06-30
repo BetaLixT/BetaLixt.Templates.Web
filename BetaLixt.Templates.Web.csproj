@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0</PackageVersion>
+    <PackageId>BetaLixT.Templates.Web</PackageId>
+    <Title>BetaLixT Web Templates</Title>
+    <Authors>BetaLixT</Authors>
+    <Description>BetaLixT's commonly used web templates</Description>
+    <PackageTags>dotnet-new;templates;betalixt;web</PackageTags>
+
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>

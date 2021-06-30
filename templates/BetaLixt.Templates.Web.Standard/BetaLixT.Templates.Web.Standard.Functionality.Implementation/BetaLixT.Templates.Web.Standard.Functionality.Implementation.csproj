@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Database\BetaLixT.Templates.Web.Standard.Database.csproj" />
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Functionality.Interface\BetaLixT.Templates.Web.Standard.Functionality.Interface.csproj" />
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Toolchain\BetaLixT.Templates.Web.Standard.Toolchain.csproj" />
+  </ItemGroup>
+
+</Project>

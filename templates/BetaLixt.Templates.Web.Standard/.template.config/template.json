@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "BetaLixT",
+    "classifications": [ "Common", "Web" ],
+    "identity": "BetaLixT.Templates.Web.Standard",
+    "name": "BetaLixT ASP.NET CORE Web App Template",
+    "shortName": "bltweb",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    },
+    "sourceName": "BetaLixT.Templates.Web.Standard",
+    "preferNameDirectory" : true
+  }
