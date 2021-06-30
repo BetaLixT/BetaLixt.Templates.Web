@@ -8,8 +8,4 @@
     <Folder Include="CustomModels\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Entity\BetaLixT.Templates.Web.Standard.Entity.csproj" />
-  </ItemGroup>
-
 </Project>
