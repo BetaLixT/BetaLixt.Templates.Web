@@ -12,7 +12,7 @@ namespace BetaLixT.Templates.Web.Standard.Data.Repositories
             this._context = context;
         }
 
-        public IAsyncEnumerable<Todo> GetTodoQueryable()
+        public IAsyncEnumerable<Todo> GetListIAsyncEnumerable()
         {
             return this._context.Todos.AsAsyncEnumerable();
         } 

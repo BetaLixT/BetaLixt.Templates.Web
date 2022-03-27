@@ -17,8 +17,12 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
             [FromQuery]int pageNumber,
             [FromQuery]int countPerPage)
         {
-            this._service.ListTodo().GetAsyncEnumerator().Take(10);
-            return this.Ok("");
+            
+            var list = await this._service.ListTodo()
+                .Skip(pageNumber * countPerPage)
+                .Take(countPerPage)
+                .ToListAsync();
+            return this.Ok(list);
         }
     }
 }

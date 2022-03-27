@@ -14,7 +14,7 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Services
 
         public IAsyncEnumerable<Todo> ListTodo()
         {
-            return this._todoRepo.GetTodoQueryable().Take(10);
+            return this._todoRepo.GetListIAsyncEnumerable();
         } 
     }
 }
