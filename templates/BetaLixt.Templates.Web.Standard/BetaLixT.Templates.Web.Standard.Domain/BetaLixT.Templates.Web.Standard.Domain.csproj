@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Domain\BetaLixT.Templates.Web.Standard.Domain.csproj" />
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Data\BetaLixT.Templates.Web.Standard.Data.csproj" />
     <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Utility\BetaLixT.Templates.Web.Standard.Utility.csproj" />
   </ItemGroup>
 
@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
 </Project>
