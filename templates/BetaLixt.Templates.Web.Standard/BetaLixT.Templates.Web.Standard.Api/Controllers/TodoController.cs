@@ -1,5 +1,6 @@
 using BetaLixT.Templates.Web.Standard.Domain.Services;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Controller
 {
@@ -16,7 +17,8 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
             [FromQuery]int pageNumber,
             [FromQuery]int countPerPage)
         {
-            this._service.ListTodoAsync
+            this._service.ListTodo().GetAsyncEnumerator().Take(10);
+            return this.Ok("");
         }
     }
 }
