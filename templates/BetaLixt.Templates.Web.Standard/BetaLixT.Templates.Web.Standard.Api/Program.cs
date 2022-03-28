@@ -1,7 +1,11 @@
+using BetaLixT.Templates.Web.Standard.Utility.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddSingleton<InitializerHelper>();
+builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -22,4 +26,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// - Running all registered initializers
+var initHelper = app.Services.GetRequiredService<InitializerHelper>();
+initHelper.RunInitializers();
+
 app.Run();
+
