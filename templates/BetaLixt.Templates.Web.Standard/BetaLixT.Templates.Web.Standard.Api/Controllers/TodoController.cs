@@ -1,9 +1,9 @@
 using BetaLixT.Templates.Web.Standard.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Controller
 {
+    [Route("api/todo")]
     public class TodoController: ControllerBase
     {
         TodoService _service;
@@ -14,10 +14,9 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
 
         [HttpGet]
         public async Task<IActionResult> ListTodoAsync(
-            [FromQuery]int pageNumber,
-            [FromQuery]int countPerPage)
-        {
-            
+            [FromQuery]int pageNumber = 0,
+            [FromQuery]int countPerPage = 100)
+        {   
             var list = await this._service.ListTodo()
                 .Skip(pageNumber * countPerPage)
                 .Take(countPerPage)

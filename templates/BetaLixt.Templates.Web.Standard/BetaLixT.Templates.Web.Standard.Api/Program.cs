@@ -1,8 +1,15 @@
 using BetaLixT.Templates.Web.Standard.Utility.Helpers;
+using BetaLixT.Templates.Web.Standard.Domain;
+using BetaLixT.Templates.Web.Standard.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.RegisterDomainServices();
+builder.Services.RegisterDataServices();
+{
+    
+}
 builder.Services.AddSingleton<InitializerHelper>();
 builder.Services.AddControllers();
 

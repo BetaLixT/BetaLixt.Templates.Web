@@ -2,6 +2,7 @@ using BetaLixT.Templates.Web.Standard.Utility.Startup;
 using BetaLixT.Templates.Web.Standard.Data.Contexts;
 using BetaLixT.Templates.Web.Standard.Data.Entities;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace BetaLixT.Templates.Web.Standard.Data.Initializers
 {
@@ -11,9 +12,9 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
 
         public bool IsRequired { get; } = false;
 
-        public Seeder(DatabaseContext context)
+        public Seeder(IDbContextFactory<DatabaseContext> contextFac)
         {
-            this._context = context;
+            this._context = contextFac.CreateDbContext();
         }
 
         public void Initialize()
