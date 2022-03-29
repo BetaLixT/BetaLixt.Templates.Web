@@ -1,5 +1,6 @@
 using BetaLixT.Templates.Web.Standard.Data.Repositories;
 using BetaLixT.Templates.Web.Standard.Data.Entities;
+using BetaLixT.Templates.Web.Standard.Domain.Responses;
 using System.Linq;
 namespace BetaLixT.Templates.Web.Standard.Domain.Services
 {
@@ -12,9 +13,9 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Services
             this._todoRepo = todoRepo;
         }
 
-        public IAsyncEnumerable<Todo> ListTodo()
+        public IServiceResponse<Todo> ListTodo()
         {
-            return this._todoRepo.GetListIAsyncEnumerable();
+            return new EnumerAsyncResponse<Todo>(this._todoRepo.GetListIAsyncEnumerable());
         } 
     }
 }
