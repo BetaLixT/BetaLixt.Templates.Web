@@ -1,19 +1,24 @@
 using BetaLixT.Templates.Web.Standard.Api.Filters.Options;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Options;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Filters
 {
 	class ResponseCacheFilter : Attribute, IAsyncActionFilter
 	{
-		private readonly ResponseCacheFilterOptions _options;
-		private readonly IDistributedCache _cache;
-		public string CacheKey { get; set; }
+		private ResponseCacheFilterOptions _options;
+		private IDistributedCache _cache;
+		public string CacheKey { get; set; } = "tm";
 		public int ExpiryMinutes { get; set; }
 
 
         public async Task OnActionExecutionAsync(ActionExecutingContext ctx, ActionExecutionDelegate nxt)
         {
+			// TODO Should be a better way to do this...?
+			this._cache = ctx.HttpContext.RequestServices.GetRequiredService<IDistributedCache>();
+			this._options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<ResponseCacheFilterOptions>>().Value;
+
 			var key = this._options.CacheKeyPrefix + CacheKey + string.Join(':', ctx.HttpContext.Request.RouteValues.Where(x => x.Key.Contains("Id")).Select(x => x.Value));
 			var resp = this._cache.Get(key);
 			if (resp == null)
