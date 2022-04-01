@@ -2,6 +2,8 @@ using BetaLixT.Templates.Web.Standard.Data.Repositories;
 using BetaLixT.Templates.Web.Standard.Data.Entities;
 using BetaLixT.Templates.Web.Standard.Domain.Responses;
 using System.Linq;
+using BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces;
+
 namespace BetaLixT.Templates.Web.Standard.Domain.Services
 {
     public class TodoService
@@ -13,9 +15,16 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Services
             this._todoRepo = todoRepo;
         }
 
-        public IServiceResponse<Todo> ListTodo()
+        public IServiceListResponse<Todo> ListTodo()
         {
-            return new EnumerAsyncResponse<Todo>(this._todoRepo.GetListIAsyncEnumerable());
-        } 
+            return new EnumerableAsyncResponse<Todo>(
+                this._todoRepo.GetListIAsyncEnumerable());
+        }
+
+        public IServiceResponse<Todo> GetTodo(Guid id)
+        {
+            return new EnumberableAsyncSingle<Todo>(
+                this._todoRepo.GetListIAsyncEnumerable().Where(x => x.Id == id));
+        }
     }
 }

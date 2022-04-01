@@ -21,6 +21,7 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
         {
             if(!this._context.Todos.Any())
             {
+                var now = DateTimeOffset.UtcNow;
                 var todos = new List<Todo>
                 {
                     new Todo {
@@ -29,6 +30,8 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
                         Description = "Need to buy one litter of Milk",
                         DueDate = DateTimeOffset.UtcNow.AddDays(1),
                         IsDone = false,
+                        CreatedOn = now,
+                        UpdatedOn = now,
                     },
                     new Todo {
                         Id = Guid.NewGuid(),
@@ -36,6 +39,8 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
                         Description = "Fix slow networking issue",
                         DueDate = DateTimeOffset.UtcNow.AddDays(5),
                         IsDone = false,
+                        CreatedOn = now,
+                        UpdatedOn = now,
                     },
                      new Todo {
                         Id = Guid.NewGuid(),
@@ -43,6 +48,8 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
                         Description = "Complete the project documentation",
                         DueDate = DateTimeOffset.UtcNow.AddDays(20),
                         IsDone = false,
+                        CreatedOn = now,
+                        UpdatedOn = now,
                     }
                 };
                 this._context.Todos.AddRange(todos);

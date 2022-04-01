@@ -7,5 +7,8 @@ namespace BetaLixT.Templates.Web.Standard.Data.Entities
         public string? Description { get; set; }
         public DateTimeOffset DueDate { get; set; }
         public bool IsDone { get; set;}
+
+        public DateTimeOffset CreatedOn { get; set; }
+        public DateTimeOffset UpdatedOn { get; set; }
     }
 }

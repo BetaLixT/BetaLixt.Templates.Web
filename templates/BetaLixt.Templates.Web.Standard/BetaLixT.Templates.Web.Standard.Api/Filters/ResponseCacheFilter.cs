@@ -19,19 +19,25 @@ namespace BetaLixT.Templates.Web.Standard.Api.Filters
 			this._cache = ctx.HttpContext.RequestServices.GetRequiredService<IDistributedCache>();
 			this._options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<ResponseCacheFilterOptions>>().Value;
 
-			var key = this._options.CacheKeyPrefix + CacheKey + string.Join(':', ctx.HttpContext.Request.RouteValues.Where(x => x.Key.Contains("Id")).Select(x => x.Value));
+			var key = this._options.CacheKeyPrefix + CacheKey + string.Join(':', ctx.HttpContext.Request.RouteValues.Where(x => x.Key.Contains("Id", StringComparison.InvariantCultureIgnoreCase)).Select(x => x.Value));
 			var resp = this._cache.Get(key);
 			if (resp == null)
             {
-				await nxt();
+				/*ctx.HttpContext.Response.Body = new MemoryStream();
+				ctx.HttpContext.Response.StatusCode = */
+				ctx.HttpContext.Response.Body = new MemoryStream();
+				var executed = await nxt();
+				var resStream = ctx.HttpContext.Response.BodyWriter.AsStream();
+				/*executed.*/
 				var age = (UInt16)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 				
-				var data = new byte[ctx.HttpContext.Response.Body.Length + 3];
+
+				var data = new byte[resStream.Position + 3];
 				var stream = new MemoryStream(data);
 				stream.WriteByte((byte)ctx.HttpContext.Response.StatusCode);
 				stream.Write(BitConverter.GetBytes(age), 0, 2);
-				ctx.HttpContext.Response.Body.Position = 0;
-				ctx.HttpContext.Response.Body.CopyTo(stream);
+				resStream.Position = 0;
+				resStream.CopyTo(stream);
 				stream.Close();
 
 				// TODO Move the save to background task mayhaps
