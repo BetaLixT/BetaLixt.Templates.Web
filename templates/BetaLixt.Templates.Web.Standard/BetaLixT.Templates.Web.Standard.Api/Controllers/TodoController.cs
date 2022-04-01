@@ -1,7 +1,7 @@
 using BetaLixT.Templates.Web.Standard.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
-using BetaLixT.Templates.Web.Standard.Api.Filters;
 using BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects;
+using ResponseCacheAttribute = BetaLixT.Templates.Web.Standard.Api.Middleware.Attributes.ResponseCacheAttribute;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Controller
 {
@@ -27,7 +27,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
 
 
         [HttpGet("{id}")]
-        [ResponseCacheFilter(CacheKey = "Todo", ExpiryMinutes = 120)]
+        [ResponseCacheAttribute("td", 120)]
         public async Task<IActionResult> GetTodoAsync(Guid id)
         {
             var todo = await this._service

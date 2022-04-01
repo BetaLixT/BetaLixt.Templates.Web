@@ -1,4 +1,4 @@
-﻿namespace BetaLixT.Templates.Web.Standard.Api.Filters.Options
+﻿namespace BetaLixT.Templates.Web.Standard.Api.Middleware.Options
 {
     public class ResponseCacheFilterOptions
     {

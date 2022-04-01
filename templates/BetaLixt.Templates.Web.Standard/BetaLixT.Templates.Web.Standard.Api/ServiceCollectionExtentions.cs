@@ -1,4 +1,4 @@
-using BetaLixT.Templates.Web.Standard.Api.Filters.Options;
+using BetaLixT.Templates.Web.Standard.Api.Middleware.Options;
 
 namespace BetaLixT.Templates.Web.Standard.Api
 {

@@ -2,6 +2,7 @@ using BetaLixT.Templates.Web.Standard.Utility.Helpers;
 using BetaLixT.Templates.Web.Standard.Domain;
 using BetaLixT.Templates.Web.Standard.Data;
 using BetaLixT.Templates.Web.Standard.Api;
+using BetaLixT.Templates.Web.Standard.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseMiddleware<ResponseCacheMiddleware>();
 
 app.MapControllers();
 
