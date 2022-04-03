@@ -25,7 +25,7 @@ namespace BetaLixT.Templates.Web.Standard.Data.Initializers
                 var todos = new List<Todo>
                 {
                     new Todo {
-                        Id = Guid.NewGuid(),
+                        Id = Guid.Parse("a06f69a4-c469-4d41-82ef-7dfc7b34348f"),
                         Title = "Buy Milk",
                         Description = "Need to buy one litter of Milk",
                         DueDate = DateTimeOffset.UtcNow.AddDays(1),

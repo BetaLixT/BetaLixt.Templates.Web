@@ -43,16 +43,15 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
             {
 				/*
 				ctx.HttpContext.Response.StatusCode = */
+				var oriStream = ctx.Response.Body;
 				ctx.Response.Body = new MemoryStream();
-
-
-				ctx.Response.BodyWriter = PipeWriter.Create(ctx.Response.Body);
+	
 				await this._next(ctx);
-				/*var resStream = ctx.Response.Body;
+				var resStream = ctx.Response.Body;
 
 				var age = (UInt16)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 				
-
+				// - Caching response 
 				var data = new byte[resStream.Position + 3];
 				var stream = new MemoryStream(data);
 				stream.WriteByte((byte)ctx.Response.StatusCode);
@@ -60,13 +59,18 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 				resStream.Position = 0;
 				resStream.CopyTo(stream);
 				stream.Close();
-				this._cache.Set(key, data);*/
+				this._cache.Set(key, data);
+
+				// - Moving back to original stream	
+				resStream.Position = 0;
+				await resStream.CopyToAsync(oriStream);
+				ctx.Response.Body = oriStream;
             }
 			else
             {
 				ctx.Response.StatusCode = resp[0];
 				ctx.Response.Headers.Add("cache-age", BitConverter.ToUInt16(resp, 1).ToString());
-				ctx.Response.Body.Write(resp, 3, resp.Length - 3);
+				await ctx.Response.Body.WriteAsync(resp, 3, resp.Length - 3);
             }
         }
     }
