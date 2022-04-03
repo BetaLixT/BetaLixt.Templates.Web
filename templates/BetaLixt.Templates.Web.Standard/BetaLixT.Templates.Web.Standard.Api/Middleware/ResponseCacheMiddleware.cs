@@ -10,6 +10,15 @@ using System.Collections.Immutable;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 {
+	// TODO more details
+	/// <summary>
+	/// Middleware that automatically caches responses
+	/// Currently supports following content types: 
+	/// * application/json
+	/// * application/json; charset=utf-8
+	/// * application/xml (Please for the love of god don't)
+	/// * application/pdf
+	/// </summary>
 	class ResponseCacheMiddleware
 	{
 		private ResponseCacheFilterOptions _options;
@@ -49,10 +58,10 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 			var key = 
 				this._options.CacheKeyPrefix + attribute.CacheKey + string.Join(string.Empty, ctx.Request.RouteValues.Where(x => x.Key.Contains("Id", StringComparison.InvariantCultureIgnoreCase)).Select(x => x.Value));
 			var resp = this._cache.Get(key);
+			
+			// - Cache miss
 			if (resp == null)
-            {
-				/*
-				ctx.HttpContext.Response.StatusCode = */
+            {	
 				var oriStream = ctx.Response.Body;
 				ctx.Response.Body = new MemoryStream();
 	
@@ -85,6 +94,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 				ctx.Response.Body = oriStream;
 				resStream.Close();
             }
+			// - Cache hit
 			else
             {
 				ctx.Response.StatusCode = resp[0];
