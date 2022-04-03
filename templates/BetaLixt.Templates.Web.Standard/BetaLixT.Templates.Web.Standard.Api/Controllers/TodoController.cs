@@ -27,7 +27,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
 
 
         [HttpGet("{id}")]
-        [ResponseCacheAttribute("td", 120)]
+        [ResponseCacheAttribute("td", 10)]
         public async Task<IActionResult> GetTodoAsync(Guid id)
         {
             var todo = await this._service

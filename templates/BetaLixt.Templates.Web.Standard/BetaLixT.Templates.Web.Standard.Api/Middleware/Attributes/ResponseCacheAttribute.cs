@@ -3,12 +3,12 @@
     public class ResponseCacheAttribute : Attribute
     {
         public string CacheKey { get; set; } = "tm";
-        public int ExpiryMinutes { get; set; }
+        public int ExpirySeconds { get; set; }
 
-        public ResponseCacheAttribute(string cacheKey, int expiryMinutes)
+        public ResponseCacheAttribute(string cacheKey, int expirySeconds)
         {
             this.CacheKey = cacheKey;
-            this.ExpiryMinutes = expiryMinutes;
+            this.ExpirySeconds = expirySeconds;
         }
     }
 }

@@ -85,7 +85,13 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 					resStream.Position = 0;
 					resStream.CopyTo(stream);
 					stream.Close();
-					this._cache.Set(key, data);
+					this._cache.Set(
+						key,
+						data, 
+						new DistributedCacheEntryOptions{
+							AbsoluteExpirationRelativeToNow = new TimeSpan(
+								0, 0, attribute.ExpirySeconds),
+					});
 				}
 
 				// - Moving back to original stream	
