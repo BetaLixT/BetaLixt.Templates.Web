@@ -1,6 +1,9 @@
 using BetaLixT.Templates.Web.Standard.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects;
+using BetaLixT.Templates.Web.Standard.Api.Models.Responses;
+using BetaLixT.Templates.Web.Standard.Utility;
+using BetaLixT.Templates.Web.Standard.Utility.Exceptions;
 using ResponseCacheAttribute = BetaLixT.Templates.Web.Standard.Api.Middleware.Attributes.ResponseCacheAttribute;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Controller
@@ -33,7 +36,14 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
             var todo = await this._service
                 .GetTodo(id)
                 .GetOrDefaultAsync(TodoSummary.Map);
-            return this.Ok(todo);
+
+	    if (todo == null) {
+		throw new EntityMissingException(
+				(int)ErrorCodes.TodoInvalidId,
+				ErrorCodes.TodoInvalidId.ToString());
+	    }
+
+            return this.Ok(new SuccessResponseContent<TodoSummary>(todo));
         }
     }
 }

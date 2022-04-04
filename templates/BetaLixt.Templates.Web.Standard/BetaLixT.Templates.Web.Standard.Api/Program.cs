@@ -34,6 +34,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<ResponseCacheMiddleware>();
 
 app.MapControllers();

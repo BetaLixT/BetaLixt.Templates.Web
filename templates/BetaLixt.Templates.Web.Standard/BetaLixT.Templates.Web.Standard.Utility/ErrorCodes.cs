@@ -2,7 +2,10 @@ namespace BetaLixT.Templates.Web.Standard.Utility
 {
 	public enum ErrorCodes
 	{
-		// Common
+		// - Todo Services
+		TodoInvalidId = 1000,
+
+		// - Common
 		UnexpectedError = 10000
 	}
 }

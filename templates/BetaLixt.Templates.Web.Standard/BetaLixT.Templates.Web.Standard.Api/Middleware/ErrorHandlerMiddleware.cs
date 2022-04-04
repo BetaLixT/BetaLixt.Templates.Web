@@ -90,6 +90,8 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 								});
 						break;
 				}
+
+				await ctx.Response.WriteAsync(messageBody);
 			}
 		}	
     }

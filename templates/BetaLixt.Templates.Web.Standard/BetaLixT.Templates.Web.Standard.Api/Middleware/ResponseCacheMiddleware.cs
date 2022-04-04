@@ -64,41 +64,46 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
             {	
 				var oriStream = ctx.Response.Body;
 				ctx.Response.Body = new MemoryStream();
-	
-				await this._next(ctx);
-				var contentType = AllowedContentType
-					.Where(x => x.Value == ctx.Response.ContentType)
-					.FirstOrDefault();
-				var resStream = ctx.Response.Body;
+
+				try
+				{
+					await this._next(ctx);
+					var contentType = AllowedContentType
+						.Where(x => x.Value == ctx.Response.ContentType)
+						.FirstOrDefault();
+					var resStream = ctx.Response.Body;
 
 
-				// - Caching response
-				if (contentType.Value != null)
-				{				
-					var age = (UInt16)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-					
-					var data = new byte[resStream.Position + 4];
-					var stream = new MemoryStream(data);
-					stream.WriteByte((byte)ctx.Response.StatusCode);
-					stream.WriteByte(contentType.Key);
-					stream.Write(BitConverter.GetBytes(age), 0, 2);
+					// - Caching response
+					if (contentType.Value != null)
+					{				
+						var age = (UInt16)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+						
+						var data = new byte[resStream.Position + 4];
+						var stream = new MemoryStream(data);
+						stream.WriteByte((byte)ctx.Response.StatusCode);
+						stream.WriteByte(contentType.Key);
+						stream.Write(BitConverter.GetBytes(age), 0, 2);
+						resStream.Position = 0;
+						resStream.CopyTo(stream);
+						stream.Close();
+						this._cache.Set(
+							key,
+							data, 
+							new DistributedCacheEntryOptions{
+								AbsoluteExpirationRelativeToNow = new TimeSpan(
+									0, 0, attribute.ExpirySeconds),
+						});
+					}
 					resStream.Position = 0;
-					resStream.CopyTo(stream);
-					stream.Close();
-					this._cache.Set(
-						key,
-						data, 
-						new DistributedCacheEntryOptions{
-							AbsoluteExpirationRelativeToNow = new TimeSpan(
-								0, 0, attribute.ExpirySeconds),
-					});
+					await resStream.CopyToAsync(oriStream);
+					resStream.Close();
 				}
-
-				// - Moving back to original stream	
-				resStream.Position = 0;
-				await resStream.CopyToAsync(oriStream);
-				ctx.Response.Body = oriStream;
-				resStream.Close();
+				finally
+				{
+					// - Moving back to original stream
+					ctx.Response.Body = oriStream;
+				}
             }
 			// - Cache hit
 			else
