@@ -1,10 +1,8 @@
 using BetaLixT.Templates.Web.Standard.Api.Middleware.Options;
 using BetaLixT.Templates.Web.Standard.Api.Middleware.Attributes;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
-using System.IO.Pipelines;
 using System.Net.Mime;
 using System.Collections.Immutable;
 
