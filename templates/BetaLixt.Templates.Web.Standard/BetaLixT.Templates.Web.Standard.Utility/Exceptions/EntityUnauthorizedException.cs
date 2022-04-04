@@ -1,8 +1,8 @@
 namespace BetaLixT.Templates.Web.Standard.Utility.Exceptions
 {
-    public class EntityUnauthorizedException : BaseException
+    public class TransactionUnauthorizedException : BaseException
     { 
-        public EntityUnauthorizedException(int code, string message, string? details = null)
+        public TransactionUnauthorizedException(int code, string message, string? details = null)
 		: base(code, message, details)
         {} 
     }
