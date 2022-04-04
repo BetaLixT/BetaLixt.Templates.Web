@@ -1,9 +1,10 @@
 ﻿using BetaLixT.Templates.Web.Standard.Data.Entities;
 using BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces;
+using Newtonsoft.Json;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
 {
-    public class TodoListing : ITransferObject<Todo>
+    public class TodoListing : ITransferObject
     {
         public Guid Id { get; set; }
         public string? Title { get; set; }
@@ -17,6 +18,22 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
                 Title = todo.Title,
                 IsDone = todo.IsDone
             };
+        }
+
+        public JsonTextWriter ToJson(JsonTextWriter writer)
+        {
+            writer.WriteStartObject();
+            writer.WritePropertyName("Id");
+            writer.WriteValue(this.Id);
+
+            writer.WritePropertyName("Title");
+            writer.WriteValue(this.Title);
+
+            writer.WritePropertyName("IsDone");
+            writer.WriteValue(this.IsDone);
+            writer.WriteEndObject();
+
+            return writer;
         }
     }
 }

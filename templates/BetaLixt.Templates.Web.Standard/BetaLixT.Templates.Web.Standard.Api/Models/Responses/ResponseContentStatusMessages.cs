@@ -8,7 +8,7 @@
         public const string BadRequest = "BadRequest";
         public const string ResourceConflict = "ResourceConflict";
         public const string ValidationFailed = "ValidationFailed";
-	public const string Unauthorized = "Unauthorized";
-	public const string Forbidden = "Forbidden";
+	    public const string Unauthorized = "Unauthorized";
+	    public const string Forbidden = "Forbidden";
     }
 }

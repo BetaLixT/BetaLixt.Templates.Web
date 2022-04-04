@@ -69,6 +69,11 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 					var contentType = AllowedContentType
 						.Where(x => x.Value == ctx.Response.ContentType)
 						.FirstOrDefault();
+
+					if (contentType.Key == 2)
+                    {
+						throw new Exception("Why..? just.... why? can you like not? anything but xml... please...");
+                    }
 					var resStream = ctx.Response.Body;
 
 

@@ -80,6 +80,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Middleware
 								});
 						break;
 					default:
+						// TODO User defined exception handlers
 						this._logger.LogError(ex, "Unexpected Exception Encountered");
 						ctx.Response.StatusCode = 403;
 						messageBody = JsonConvert.SerializeObject(
