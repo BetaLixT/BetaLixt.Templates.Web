@@ -25,16 +25,16 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
         public async Task<JsonTextWriter> ToJsonAsync(JsonTextWriter writer)
         {
             await writer.WriteStartObjectAsync();
-            await writer.WritePropertyNameAsync("Id");
+            await writer.WritePropertyNameAsync("id");
             await writer.WriteValueAsync(this.Id);
 
-            await writer.WritePropertyNameAsync("Title");
+            await writer.WritePropertyNameAsync("title");
             await writer.WriteValueAsync(this.Title);
 
-            await writer.WritePropertyNameAsync("Description");
+            await writer.WritePropertyNameAsync("description");
             await writer.WriteValueAsync(this.Description);
             
-            await writer.WritePropertyNameAsync("IsDone");
+            await writer.WritePropertyNameAsync("isDone");
             await writer.WriteValueAsync(this.IsDone);
  
             await writer.WriteEndObjectAsync();

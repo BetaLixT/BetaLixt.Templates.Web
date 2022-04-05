@@ -17,4 +17,9 @@ dotnet new -u BetaLixT.Templates.Web
 ```
 ## TODO
 * Better documentation
-* Maybe a template with entity framework included
+* Swagger
+* Transfer object auto generator
+* Dapper Postgres
+* Transaction logging middleware
+* Analytics middleware
+* Logging
