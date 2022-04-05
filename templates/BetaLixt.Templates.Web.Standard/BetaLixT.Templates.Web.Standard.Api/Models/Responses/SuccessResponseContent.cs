@@ -10,13 +10,15 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
             this.resultData = data; 
         }
 
-        public SuccessResponseContent(List<ITransferObject> data)
+        public SuccessResponseContent(IEnumerable<ITransferObject> data, int totalCount)
         {
             this.resultDataList = data;
+            this._totalListCount = totalCount;
         }
 
-        private ITransferObject? resultData { get; set; }
-        private List<ITransferObject>? resultDataList { get; set; }
+        private ITransferObject? resultData;
+        private IEnumerable<ITransferObject>? resultDataList;
+        private readonly int? _totalListCount;
 
 
         public async Task<JsonTextWriter> ToJsonAsync(JsonTextWriter writer)
@@ -36,9 +38,11 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
                 await writer.WriteStartArrayAsync();
                 foreach(var data in this.resultDataList)
                 {
-                    writer = await data.ToJsonAsync(writer); 
+                    writer = await data.ToJsonAsync(writer);
                 } 
                 await writer.WriteEndArrayAsync();
+                await writer.WritePropertyNameAsync("TotalCount");
+                await writer.WriteValueAsync(this._totalListCount);
             }
 
             await writer.WriteEndObjectAsync();
