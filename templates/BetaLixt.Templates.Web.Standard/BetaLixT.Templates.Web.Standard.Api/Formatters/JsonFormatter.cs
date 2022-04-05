@@ -11,6 +11,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Formatters
         {
             // Add the supported media type.
             SupportedMediaTypes.Add("application/json");
+            SupportedEncodings.Add(Encoding.UTF8);  
         }
 
         protected override bool CanWriteType(Type? type)
@@ -22,12 +23,13 @@ namespace BetaLixT.Templates.Web.Standard.Api.Formatters
             OutputFormatterWriteContext ctx,
             Encoding selectedEncoding)
         {
-            using (var sw = new StreamWriter(ctx.HttpContext.Response.Body))
-            {
-                var resp = ctx.Object as SuccessResponseContent;
-                JsonTextWriter writer = new JsonTextWriter(sw);
-                writer = await resp.ToJsonAsync(writer);                
-            }
+            var sw = new StreamWriter(ctx.HttpContext.Response.Body);
+            
+            var resp = ctx.Object as SuccessResponseContent;
+            JsonTextWriter writer = new JsonTextWriter(sw);
+            // await sw.WriteAsync("tewstsets");
+            writer = await resp.ToJsonAsync(writer);
+            await sw.FlushAsync();
         }
     }
 }
