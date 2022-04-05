@@ -20,18 +20,18 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
             };
         }
 
-        public JsonTextWriter ToJson(JsonTextWriter writer)
+        public async Task<JsonTextWriter> ToJsonAsync(JsonTextWriter writer)
         {
-            writer.WriteStartObject();
-            writer.WritePropertyName("Id");
-            writer.WriteValue(this.Id);
+            await writer.WriteStartObjectAsync();
+            await writer.WritePropertyNameAsync("Id");
+            await writer.WriteValueAsync(this.Id);
 
-            writer.WritePropertyName("Title");
-            writer.WriteValue(this.Title);
+            await writer.WritePropertyNameAsync("Title");
+            await writer.WriteValueAsync(this.Title);
 
-            writer.WritePropertyName("IsDone");
-            writer.WriteValue(this.IsDone);
-            writer.WriteEndObject();
+            await writer.WritePropertyNameAsync("IsDone");
+            await writer.WriteValueAsync(this.IsDone);
+            await writer.WriteEndObjectAsync();
 
             return writer;
         }

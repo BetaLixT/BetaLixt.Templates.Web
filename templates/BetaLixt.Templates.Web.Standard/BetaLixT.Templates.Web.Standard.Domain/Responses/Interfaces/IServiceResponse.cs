@@ -10,6 +10,6 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces
     {
         Task<TransferObject?> GetOrDefaultAsync<TransferObject>(
                Func<AccessObject, TransferObject> selector
-           ) where TransferObject : ITransferObject<AccessObject>;
+           ) where TransferObject : ITransferObject;
     }
 }

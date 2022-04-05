@@ -37,13 +37,13 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
                 .GetTodo(id)
                 .GetOrDefaultAsync(TodoSummary.Map);
 
-	    if (todo == null) {
-		throw new EntityMissingException(
-				(int)ErrorCodes.TodoInvalidId,
-				ErrorCodes.TodoInvalidId.ToString());
-	    }
+            if (todo == null) {
+            throw new EntityMissingException(
+                    (int)ErrorCodes.TodoInvalidId,
+                    ErrorCodes.TodoInvalidId.ToString());
+            }
 
-            return this.Ok(new SuccessResponseContent<TodoSummary>(todo));
+            return this.Ok(new SuccessResponseContent(todo));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses
 
         public async Task<TransferObject?> GetOrDefaultAsync<TransferObject>(
             Func<AccessObject, TransferObject> selector
-        ) where TransferObject : ITransferObject<AccessObject>
+        ) where TransferObject : ITransferObject
         {
             return await this._enumerable
                 .Select(selector)
@@ -28,7 +28,7 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses
 
         public async Task<TransferObject?> GetOrDefaultGenericAsync<TransferObject>(
             Func<AccessObject, TransferObject> selector
-        ) where TransferObject : ITransferObject<AccessObject>
+        ) where TransferObject : ITransferObject
         {
             return await this._enumerable
                 .Select(selector)

@@ -8,6 +8,6 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces
             Func<AccessObject, TransferObject> selector,
             int countPerPage = 0,
             int pageNumber = 0
-        ) where TransferObject : ITransferObject<AccessObject>;
+        ) where TransferObject : ITransferObject;
     }
 }

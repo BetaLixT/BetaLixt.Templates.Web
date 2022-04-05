@@ -3,6 +3,7 @@ using BetaLixT.Templates.Web.Standard.Domain;
 using BetaLixT.Templates.Web.Standard.Data;
 using BetaLixT.Templates.Web.Standard.Api;
 using BetaLixT.Templates.Web.Standard.Api.Middleware;
+using BetaLixT.Templates.Web.Standard.Api.Formatters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,9 @@ builder.Services.RegisterApiServices(config);
 
 
 builder.Services.AddSingleton<InitializerHelper>();
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => {
+	options.OutputFormatters.Insert(0, new JsonFormatter());
+});
 
 
 var app = builder.Build();

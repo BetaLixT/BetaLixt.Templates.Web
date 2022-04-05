@@ -15,7 +15,7 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses
             Func<AccessObject, TransferObject> selector,
             int countPerPage = 0,
             int pageNumber = 0
-        ) where TransferObject : ITransferObject<AccessObject>
+        ) where TransferObject : ITransferObject
         {
             var q = this._enumerable.Select(selector);
             if (countPerPage > 0)

@@ -1,35 +1,32 @@
 ﻿using BetaLixT.Templates.Web.Standard.Api.Models.Responses;
 using Newtonsoft.Json;
-using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Text;
 namespace BetaLixT.Templates.Web.Standard.Api.Formatters
 {
-    public class JsonFormatter : BufferedMediaTypeFormatter
+    public class JsonFormatter : TextOutputFormatter
     {
         public JsonFormatter()
         {
             // Add the supported media type.
-            SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
+            SupportedMediaTypes.Add("application/json");
         }
 
-        public override bool CanReadType(Type type)
+        protected override bool CanWriteType(Type? type)
         {
-            return true;
+           return true; 
         }
 
-        public override bool CanWriteType(Type type)
+        public override async Task WriteResponseBodyAsync(
+            OutputFormatterWriteContext ctx,
+            Encoding selectedEncoding)
         {
-            return false;
-        }
-
-        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
-        {
-            using (var sw = new StreamWriter(writeStream))
+            using (var sw = new StreamWriter(ctx.HttpContext.Response.Body))
             {
-                var resp = value as SuccessResponseContent;
+                var resp = ctx.Object as SuccessResponseContent;
                 JsonTextWriter writer = new JsonTextWriter(sw);
-                writer = resp.ToJson(writer);
+                writer = await resp.ToJsonAsync(writer);                
             }
         }
     }
