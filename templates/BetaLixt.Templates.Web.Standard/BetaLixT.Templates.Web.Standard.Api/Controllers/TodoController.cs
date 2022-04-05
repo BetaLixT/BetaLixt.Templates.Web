@@ -25,7 +25,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
             var list = await this._service
                 .ListTodo()
                 .ToListAsync(TodoListing.Map, countPerPage, pageNumber);
-            return this.Ok(list);
+            return this.Ok(new SuccessResponseContent(list, list.Count));
         }
 
 
