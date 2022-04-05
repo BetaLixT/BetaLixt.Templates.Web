@@ -7,17 +7,17 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
     {
         public SuccessResponseContent(ITransferObject data)
         {
-            this.resultData = data; 
+            this._resultData = data; 
         }
 
         public SuccessResponseContent(IEnumerable<ITransferObject> data, int totalCount)
         {
-            this.resultDataList = data;
+            this._resultDataList = data;
             this._totalListCount = totalCount;
         }
 
-        private ITransferObject? resultData;
-        private IEnumerable<ITransferObject>? resultDataList;
+        private readonly ITransferObject? _resultData;
+        private readonly IEnumerable<ITransferObject>? _resultDataList;
         private readonly int? _totalListCount;
 
 
@@ -27,16 +27,16 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
             await writer.WritePropertyNameAsync("StatusMessage");
             await writer.WriteValueAsync(ResponseContentStatusMessages.Success);
 
-            if (this.resultData != null)
+            if (this._resultData != null)
             {
                 await writer.WritePropertyNameAsync("ResultData");
-                writer = await this.resultData.ToJsonAsync(writer);
+                writer = await this._resultData.ToJsonAsync(writer);
             }
-            else if (this.resultDataList != null)
+            else if (this._resultDataList != null)
             {
                 await writer.WritePropertyNameAsync("ResultData");
                 await writer.WriteStartArrayAsync();
-                foreach(var data in this.resultDataList)
+                foreach(var data in this._resultDataList)
                 {
                     writer = await data.ToJsonAsync(writer);
                 } 
