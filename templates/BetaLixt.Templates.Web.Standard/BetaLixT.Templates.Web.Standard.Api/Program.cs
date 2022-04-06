@@ -20,6 +20,7 @@ builder.Services.AddControllers(options => {
 	options.OutputFormatters.Insert(0, new JsonFormatter());
 });
 
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -41,6 +42,8 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<ResponseCacheMiddleware>();
 
 app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // - Running all registered initializers
 var initHelper = app.Services.GetRequiredService<InitializerHelper>();
