@@ -10,30 +10,44 @@ namespace BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters
             OpenApiOperation operation,
             OperationFilterContext context)
         {
-            if (!context.ApiDescription.TryGetMethodInfo(out var methodInfo))
+            
+            if (operation.Parameters == null)
+                operation.Parameters = new List<OpenApiParameter>();
+ 
+            operation.Parameters.Add(new OpenApiParameter
             {
-                return;
-            }
-
-            // TODO Find a different way to do this instead of relying on reflections
-            var respondsWiths = methodInfo?.DeclaringType?.CustomAttributes.OfType<RespondsWith>();
-            if (respondsWiths != null)
-            {
-                foreach (var respondsWith in respondsWiths)
+                Name = "x-customHeader",
+                In = ParameterLocation.Header,
+                Required = true,
+                Schema = new OpenApiSchema
                 {
-                    operation.Responses.Add(
-                        respondsWith.StatusCode.ToString(),
-                        new OpenApiResponse { Description = "Unauthorized" });
-                    new OpenApiResponse { Content = new Dictionary<string, OpenApiMediaType>() {
-                        { "", new OpenApiMediaType{ 
-                        }}
-                    }};
+                    Type = "String" 
                 }
+            });
+            // if (!context.ApiDescription.TryGetMethodInfo(out var methodInfo))
+            // {
+            //     return;
+            // }
 
-                if (!operation.Responses.Any(r => r.Key == StatusCodes.Status401Unauthorized.ToString()))
-                {
-                }
-            }
+            // // TODO Find a different way to do this instead of relying on reflections
+            // var respondsWiths = methodInfo?.DeclaringType?.CustomAttributes.OfType<RespondsWith>();
+            // if (respondsWiths != null)
+            // {
+            //     foreach (var respondsWith in respondsWiths)
+            //     {
+            //         operation.Responses.Add(
+            //             respondsWith.StatusCode.ToString(),
+            //             new OpenApiResponse { Description = "Unauthorized" });
+            //         new OpenApiResponse { Content = new Dictionary<string, OpenApiMediaType>() {
+            //             { "", new OpenApiMediaType{ 
+            //             }}
+            //         }};
+            //     }
+
+            //     if (!operation.Responses.Any(r => r.Key == StatusCodes.Status401Unauthorized.ToString()))
+            //     {
+            //     }
+            // }
 
         }
     }

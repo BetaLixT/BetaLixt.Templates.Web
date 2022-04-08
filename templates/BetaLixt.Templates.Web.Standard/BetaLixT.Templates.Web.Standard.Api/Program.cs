@@ -4,6 +4,7 @@ using BetaLixT.Templates.Web.Standard.Data;
 using BetaLixT.Templates.Web.Standard.Api;
 using BetaLixT.Templates.Web.Standard.Api.Middleware;
 using BetaLixT.Templates.Web.Standard.Api.Formatters;
+using BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,9 @@ builder.Services.AddControllers(options => {
 	options.OutputFormatters.Insert(0, new JsonFormatter());
 });
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => {
+	c.OperationFilter<TransactionObjectResFilter>();
+});
 
 var app = builder.Build();
 
