@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
 {
-    public class SuccessResponseContent
+    public class SuccessResponseContent : ITransferObject
     {
         public SuccessResponseContent(ITransferObject data)
         {

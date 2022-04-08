@@ -4,6 +4,7 @@ namespace BetaLixT.Templates.Web.Standard.Utility
 	{
 		// - Todo Services
 		TodoInvalidId = 1000,
+		TodoEmailCheckFailed,
 
 		// - Common
 		UnexpectedError = 10000
