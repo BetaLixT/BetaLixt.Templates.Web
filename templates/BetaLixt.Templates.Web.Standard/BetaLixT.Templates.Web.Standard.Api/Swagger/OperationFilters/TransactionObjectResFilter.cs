@@ -10,20 +10,18 @@ namespace BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters
             OpenApiOperation operation,
             OperationFilterContext context)
         {
-            
-            if (operation.Parameters == null)
-                operation.Parameters = new List<OpenApiParameter>();
- 
-            operation.Parameters.Add(new OpenApiParameter
-            {
-                Name = "x-customHeader",
-                In = ParameterLocation.Header,
-                Required = true,
-                Schema = new OpenApiSchema
-                {
-                    Type = "String" 
-                }
-            });
+            var temp = operation.Responses;
+            // if (operation.Parameters == null)
+            //     operation.Parameters = new List<OpenApiParameter>();
+
+            //var temp = operation.Responses;
+        	// operation.Responses.Add("",
+			// new OpenApiResponse{
+			// 	Content = new Dictionary<string, OpenApiMediaType> {
+			// 		{"test", new OpenApiMediaType{}}
+			// 	}	
+			// }
+		    //);
             // if (!context.ApiDescription.TryGetMethodInfo(out var methodInfo))
             // {
             //     return;

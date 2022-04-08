@@ -45,5 +45,12 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
 
             return this.Ok(new SuccessResponseContent(todo));
         }
+
+        [HttpGet("test/{id}")]
+        [ResponseCacheAttribute("td", 10)]
+        public TodoListing Test(Guid id)
+        {
+            throw new NotImplementedException(); 
+        }
     }
 }

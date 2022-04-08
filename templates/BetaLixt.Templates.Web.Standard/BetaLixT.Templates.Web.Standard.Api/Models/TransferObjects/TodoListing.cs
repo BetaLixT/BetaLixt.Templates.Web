@@ -1,7 +1,7 @@
 ﻿using BetaLixT.Templates.Web.Standard.Data.Entities;
 using BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces;
 using Newtonsoft.Json;
-
+using Microsoft.OpenApi.Models;
 namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
 {
     public class TodoListing : ITransferObject
@@ -35,5 +35,12 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
 
             return writer;
         }
+
+        public OpenApiSchema GetOpenApiSchema()
+        {
+            return new OpenApiSchema {
+                Properties = {}
+            };
+        } 
     }
 }
