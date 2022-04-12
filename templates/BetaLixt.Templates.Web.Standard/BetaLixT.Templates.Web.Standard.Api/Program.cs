@@ -22,6 +22,7 @@ builder.Services.AddControllers(options => {
 });
 
 builder.Services.AddSwaggerGen(c => {
+    c.DocumentFilter<DocumentFilter>();
 	c.OperationFilter<TransactionObjectResFilter>();
 });
 

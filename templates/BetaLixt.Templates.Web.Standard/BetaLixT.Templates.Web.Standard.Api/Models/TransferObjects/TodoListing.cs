@@ -41,6 +41,11 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
             return new OpenApiSchema {
                 Properties = {}
             };
-        } 
+        }
+
+        public string GetOpenApiKey()
+        {
+            return "TodoListing"; 
+        }
     }
 }

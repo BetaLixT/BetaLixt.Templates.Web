@@ -1,6 +1,6 @@
 ﻿using BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces;
 using Newtonsoft.Json;
-
+using Microsoft.OpenApi.Models;
 namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
 {
     public class SuccessResponseContent : ITransferObject
@@ -49,5 +49,17 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
 
             return writer;
         }
-    }
+
+        public OpenApiSchema GetOpenApiSchema()
+        {
+            return new OpenApiSchema {
+                Properties = {}
+            };
+        }
+
+        public string GetOpenApiKey()
+        {
+            return "TodoListing"; 
+        }
+    } 
 }
