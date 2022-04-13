@@ -1,4 +1,6 @@
-﻿using BetaLixT.Templates.Web.Standard.Api.Swagger.Attributes;
+﻿using BetaLixT.Templates.Web.Standard.Api.Models.Responses;
+using BetaLixT.Templates.Web.Standard.Api.Swagger.Attributes;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -10,7 +12,73 @@ namespace BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters
             OpenApiOperation operation,
             OperationFilterContext context)
         {
-            var temp = operation.Responses;
+            if (operation.Responses.Count > 0)
+            {
+                foreach(var response in operation.Responses.Where(x => x.Key.StartsWith('2')))
+                {
+                    if (response.Value.Content.Count > 0)
+                    {
+                        foreach (var content in response.Value.Content)
+                        {
+                            var schema = content.Value.Schema;
+
+                            if (schema == null)
+                            {
+                                content.Value.Schema = new OpenApiSchema
+                                {
+                                    Type = "object",
+                                    Properties = new Dictionary<string, OpenApiSchema>
+                                {
+                                    { "statusMessage", new OpenApiSchema { Type = "string", Nullable = false, Example = new OpenApiString(ResponseContentStatusMessages.Success) } }
+                                }
+                                };
+                            }
+                            else if (content.Value.Schema.Type == "array")
+                            {
+                                content.Value.Schema = new OpenApiSchema
+                                {
+                                    Type = "object",
+                                    Properties = new Dictionary<string, OpenApiSchema>
+                                {
+                                    { "statusMessage", new OpenApiSchema { Type = "string", Nullable = false, Example = new OpenApiString(ResponseContentStatusMessages.Success) } },
+                                    { "resultData", schema },
+                                    { "totalCount", new OpenApiSchema { Type = "integer", Nullable = false } },
+                                }
+                                };
+                            }
+                            else
+                            {
+                                content.Value.Schema = new OpenApiSchema
+                                {
+                                    Type = "object",
+                                    Properties = new Dictionary<string, OpenApiSchema>
+                                    {
+                                        { "statusMessage", new OpenApiSchema { Type = "string", Nullable = false, Example = new OpenApiString(ResponseContentStatusMessages.Success) } },
+                                        { "resultData", schema },
+                                    }
+                                };
+                            }
+                        }
+                    }
+                    else
+                    {
+                        response.Value.Content.Add("application/json", new OpenApiMediaType {
+                            Schema = new OpenApiSchema
+                            {
+                                Type = "object",
+                                Properties = new Dictionary<string, OpenApiSchema>
+                                    {
+                                        { "statusMessage", new OpenApiSchema { Type = "string", Nullable = false, Example = new OpenApiString(ResponseContentStatusMessages.Success) } },
+                                    }
+                            },
+                            Encoding = new Dictionary<string, OpenApiEncoding>
+                            {
+                                /*{ "UTF-8", new OpenApiEncoding}*/
+                            }
+                        });
+                    }
+                }
+            }
             // if (operation.Parameters == null)
             //     operation.Parameters = new List<OpenApiParameter>();
 

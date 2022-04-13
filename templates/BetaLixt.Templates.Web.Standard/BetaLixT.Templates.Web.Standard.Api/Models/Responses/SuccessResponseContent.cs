@@ -24,24 +24,24 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.Responses
         public async Task<JsonTextWriter> ToJsonAsync(JsonTextWriter writer)
         {
             await writer.WriteStartObjectAsync();
-            await writer.WritePropertyNameAsync("StatusMessage");
+            await writer.WritePropertyNameAsync("statusMessage");
             await writer.WriteValueAsync(ResponseContentStatusMessages.Success);
 
             if (this._resultData != null)
             {
-                await writer.WritePropertyNameAsync("ResultData");
+                await writer.WritePropertyNameAsync("resultData");
                 writer = await this._resultData.ToJsonAsync(writer);
             }
             else if (this._resultDataList != null)
             {
-                await writer.WritePropertyNameAsync("ResultData");
+                await writer.WritePropertyNameAsync("resultData");
                 await writer.WriteStartArrayAsync();
                 foreach(var data in this._resultDataList)
                 {
                     writer = await data.ToJsonAsync(writer);
                 } 
                 await writer.WriteEndArrayAsync();
-                await writer.WritePropertyNameAsync("TotalCount");
+                await writer.WritePropertyNameAsync("totalCount");
                 await writer.WriteValueAsync(this._totalListCount);
             }
 

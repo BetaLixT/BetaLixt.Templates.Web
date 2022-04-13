@@ -11,7 +11,10 @@ namespace BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces
     public interface ITransferObject
     {
         Task<JsonTextWriter> ToJsonAsync(JsonTextWriter writer);
-        OpenApiSchema GetOpenApiSchema();
-        string GetOpenApiKey();
+        
+        static IDictionary<string, OpenApiSchema> GetOpenApiProperties()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

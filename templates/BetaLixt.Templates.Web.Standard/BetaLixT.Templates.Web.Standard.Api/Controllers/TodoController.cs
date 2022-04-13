@@ -11,13 +11,14 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
     [Route("api/todo")]
     public class TodoController: ControllerBase
     {
-        TodoService _service;
+        private readonly TodoService _service;
         public TodoController(TodoService service)
         {
            this._service = service; 
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<TodoListing>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ListTodoAsync(
             [FromQuery]int pageNumber = 0,
             [FromQuery]int countPerPage = 100)
@@ -30,7 +31,7 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
 
 
         [HttpGet("{id}")]
-        [ResponseCacheAttribute("td", 10)]
+        [ProducesResponseType(typeof(TodoSummary), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetTodoAsync(Guid id)
         {
             var todo = await this._service
@@ -44,13 +45,6 @@ namespace BetaLixT.Templates.Web.Standard.Api.Controller
             }
 
             return this.Ok(new SuccessResponseContent(todo));
-        }
-
-        [HttpGet("test/{id}")]
-        [ResponseCacheAttribute("td", 10)]
-        public TodoListing Test(Guid id)
-        {
-            throw new NotImplementedException(); 
         }
     }
 }

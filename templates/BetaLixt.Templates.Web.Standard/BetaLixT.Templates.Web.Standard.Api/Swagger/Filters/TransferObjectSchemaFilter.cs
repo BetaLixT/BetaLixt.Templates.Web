@@ -1,15 +1,22 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
+using BetaLixT.Templates.Web.Standard.Domain.Responses.Interfaces;
 
 namespace BetaLixT.Templates.Web.Standard.Api.Swagger.Filters
 {
-    public class TransactionObjectResFilter: ISchemaFilter
+    public class TransferObjectResFilter: ISchemaFilter
     {
         public void Apply(
-            Schema schema,
-            SchemaRegistry registry,
-            Type type)
+            OpenApiSchema schema,
+            SchemaFilterContext ctx)
         {
+            
+            if (ctx.Type.GetInterface(nameof(ITransferObject)) != null)
+            {
+                var props = (IDictionary<string, OpenApiSchema>)(ctx.Type.GetMethod(nameof(ITransferObject.GetOpenApiProperties))!
+                    .Invoke(null, null)!);
+                schema.Properties = props;
+            }
         }
     }
 }

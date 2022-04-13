@@ -36,16 +36,14 @@ namespace BetaLixT.Templates.Web.Standard.Api.Models.TransferObjects
             return writer;
         }
 
-        public OpenApiSchema GetOpenApiSchema()
+        public static IDictionary<string, OpenApiSchema> GetOpenApiProperties()
         {
-            return new OpenApiSchema {
-                Properties = {}
+            return new Dictionary<string, OpenApiSchema>
+            {
+                { "id", new OpenApiSchema { Type = "string", Format = "uuid", Nullable = false} },
+                { "title", new OpenApiSchema { Type = "string", Nullable = true} },
+                { "isDone", new OpenApiSchema { Type = "boolean", Nullable = false} }
             };
-        }
-
-        public string GetOpenApiKey()
-        {
-            return "TodoListing"; 
         }
     }
 }
