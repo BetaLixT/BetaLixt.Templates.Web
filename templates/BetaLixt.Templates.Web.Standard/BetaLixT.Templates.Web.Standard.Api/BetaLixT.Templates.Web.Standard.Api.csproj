@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Domain\BetaLixT.Templates.Web.Standard.Domain.csproj" />
+    <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Generators\BetaLixT.Templates.Web.Standard.Generators.csproj" />
     <ProjectReference Include="..\BetaLixT.Templates.Web.Standard.Utility\BetaLixT.Templates.Web.Standard.Utility.csproj" />
   </ItemGroup>
 

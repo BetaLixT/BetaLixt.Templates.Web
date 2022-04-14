@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaLixT.Templates.Web.Standard.Api", "BetaLixT.Templates.Web.Standard.Api\BetaLixT.Templates.Web.Standard.Api.csproj", "{D5C51C03-8500-4041-832D-9D40BBCA3F2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetaLixT.Templates.Web.Standard.Api", "BetaLixT.Templates.Web.Standard.Api\BetaLixT.Templates.Web.Standard.Api.csproj", "{D5C51C03-8500-4041-832D-9D40BBCA3F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaLixT.Templates.Web.Standard.Domain", "BetaLixT.Templates.Web.Standard.Domain\BetaLixT.Templates.Web.Standard.Domain.csproj", "{28D92633-52BD-42E9-9441-1EA27CBC13A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetaLixT.Templates.Web.Standard.Domain", "BetaLixT.Templates.Web.Standard.Domain\BetaLixT.Templates.Web.Standard.Domain.csproj", "{28D92633-52BD-42E9-9441-1EA27CBC13A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaLixT.Templates.Web.Standard.Data", "BetaLixT.Templates.Web.Standard.Data\BetaLixT.Templates.Web.Standard.Data.csproj", "{63A517F4-C374-4F9E-ACCE-17A3E0D321E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetaLixT.Templates.Web.Standard.Data", "BetaLixT.Templates.Web.Standard.Data\BetaLixT.Templates.Web.Standard.Data.csproj", "{63A517F4-C374-4F9E-ACCE-17A3E0D321E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaLixT.Templates.Web.Standard.Utility", "BetaLixT.Templates.Web.Standard.Utility\BetaLixT.Templates.Web.Standard.Utility.csproj", "{09FA1B37-CE2B-40E4-80F0-0F2D0BAFB09E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetaLixT.Templates.Web.Standard.Utility", "BetaLixT.Templates.Web.Standard.Utility\BetaLixT.Templates.Web.Standard.Utility.csproj", "{09FA1B37-CE2B-40E4-80F0-0F2D0BAFB09E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaLixT.Templates.Web.Standard.Generators", "BetaLixT.Templates.Web.Standard.Generators\BetaLixT.Templates.Web.Standard.Generators.csproj", "{81DDDA7A-9754-499D-AE72-04D552909C9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3EC708AC-E04F-44EE-B266-E04B2F95158A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EC708AC-E04F-44EE-B266-E04B2F95158A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EC708AC-E04F-44EE-B266-E04B2F95158A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EC708AC-E04F-44EE-B266-E04B2F95158A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6989021D-F15D-48C9-9717-5223ED866102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6989021D-F15D-48C9-9717-5223ED866102}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6989021D-F15D-48C9-9717-5223ED866102}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6989021D-F15D-48C9-9717-5223ED866102}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1F984C5-5DF3-4D43-ADE8-65B382319382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1F984C5-5DF3-4D43-ADE8-65B382319382}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1F984C5-5DF3-4D43-ADE8-65B382319382}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1F984C5-5DF3-4D43-ADE8-65B382319382}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5C51C03-8500-4041-832D-9D40BBCA3F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5C51C03-8500-4041-832D-9D40BBCA3F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C51C03-8500-4041-832D-9D40BBCA3F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +35,10 @@ Global
 		{09FA1B37-CE2B-40E4-80F0-0F2D0BAFB09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09FA1B37-CE2B-40E4-80F0-0F2D0BAFB09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09FA1B37-CE2B-40E4-80F0-0F2D0BAFB09E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DDDA7A-9754-499D-AE72-04D552909C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDDA7A-9754-499D-AE72-04D552909C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDDA7A-9754-499D-AE72-04D552909C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDDA7A-9754-499D-AE72-04D552909C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

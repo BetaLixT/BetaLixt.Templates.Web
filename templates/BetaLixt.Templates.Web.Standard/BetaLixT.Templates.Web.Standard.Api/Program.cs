@@ -4,7 +4,6 @@ using BetaLixT.Templates.Web.Standard.Data;
 using BetaLixT.Templates.Web.Standard.Api;
 using BetaLixT.Templates.Web.Standard.Api.Middleware;
 using BetaLixT.Templates.Web.Standard.Api.Formatters;
-using BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters;
 using BetaLixT.Templates.Web.Standard.Api.Swagger.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +23,6 @@ builder.Services.AddControllers(options => {
 
 builder.Services.AddSwaggerGen(c => {
     c.SchemaFilter<TransferObjectResFilter>();
-    c.DocumentFilter<DocumentFilter>();
 	c.OperationFilter<TransactionObjectResFilter>();
 });
 

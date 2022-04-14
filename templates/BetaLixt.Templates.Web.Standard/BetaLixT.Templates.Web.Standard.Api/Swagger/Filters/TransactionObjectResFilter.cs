@@ -1,10 +1,9 @@
 ﻿using BetaLixT.Templates.Web.Standard.Api.Models.Responses;
-using BetaLixT.Templates.Web.Standard.Api.Swagger.Attributes;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace BetaLixT.Templates.Web.Standard.Api.Swagger.OperationFilters
+namespace BetaLixT.Templates.Web.Standard.Api.Swagger.Filters
 {
     public class TransactionObjectResFilter : IOperationFilter
     {
